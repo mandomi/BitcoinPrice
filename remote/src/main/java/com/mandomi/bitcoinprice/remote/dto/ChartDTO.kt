@@ -10,4 +10,4 @@ data class ChartDTO(
     @SerializedName("values") val points: List<PointDTO>
 )
 
-data class PointDTO(@SerializedName("x") val x: Int, @SerializedName("y") val y: Double)
+data class PointDTO(@SerializedName("x") val x: Long, @SerializedName("y") val y: Double)
