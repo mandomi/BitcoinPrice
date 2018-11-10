@@ -10,8 +10,8 @@ interface ChartService {
     @GET("/charts/{chartName}")
     fun getChart(
         @Path("chartName") name: String,
-        @Query("timeSpan") timeSpan: String = "1year",
-        @Query("rollingAverage") rollingAverage: String = "24hours",
-        @Query("start") start: String = ""
+        @Query("timeSpan") timeSpan: String,
+        @Query("rollingAverage") rollingAverage: String,
+        @Query("start") start: String
     ): Call<ChartDTO>
 }
