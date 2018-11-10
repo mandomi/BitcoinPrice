@@ -34,6 +34,8 @@ dependencies {
     implementation appDependencies.kotlin
     implementation appDependencies.androidxAppcompat
     implementation appDependencies.androidxConstraintLayout
+    implementation appDependencies.androidxLifecycle
+
     implementation appDependencies.rxKotlin
     implementation appDependencies.rxAndroid
 
@@ -42,7 +44,6 @@ dependencies {
     implementation appDependencies.daggerAndroid
     implementation appDependencies.daggerAndroidSupport
     kapt appDependencies.daggerAndroidProcessor
-
 
     testImplementation appTestDependencies.junit
     androidTestImplementation appTestDependencies.androidxTestRunner
