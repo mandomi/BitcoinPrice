@@ -1,7 +1,7 @@
-package com.farsitel.bazaar.ui.base
+package com.mandomi.bitcoinprice.ui.base
 
 import androidx.lifecycle.ViewModelProvider
-import dagger.android.DaggerFragment
+import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 abstract class BaseFragment : DaggerFragment() {

@@ -13,9 +13,9 @@ import javax.inject.Singleton
 @Module
 class AppModule {
 
-//    @Provides
-//    @Singleton
-//    fun provideApplicationContext(application: BitcoinPriceApplication): Context = application.applicationContext
+    @Provides
+    @Singleton
+    fun provideApplicationContext(application: BitcoinPriceApplication): Context = application.applicationContext
 
     @Provides
     @Singleton
