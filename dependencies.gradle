@@ -16,6 +16,8 @@ ext {
     okhttpVersion = '3.11.0'
     retrofitVersion = '2.4.0'
     gsonVersion = '2.8.5'
+    daggerVersion = "2.16"
+    rxAndroidVersion = '2.1.0'
 
     //Testing
     jUnitVersion = '4.12'
@@ -27,6 +29,13 @@ ext {
             kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
             androidxAppcompat       : "androidx.appcompat:appcompat:${androidxVersion}",
             androidxConstraintLayout: "androidx.constraintlayout:constraintlayout:${androidxConstraintLayoutVersion}",
+            dagger                  : "com.google.dagger:dagger:${daggerVersion}",
+            daggerCompiler          : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            daggerAndroid           : "com.google.dagger:dagger-android:${daggerVersion}",
+            daggerAndroidSupport    : "com.google.dagger:dagger-android-support:${daggerVersion}",
+            daggerAndroidProcessor  : "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            rxKotlin                : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+            rxAndroid               : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
     ]
 
     appTestDependencies = [
@@ -43,7 +52,7 @@ ext {
     ]
 
     domainTestDependencies = [
-            junit  : "junit:junit:${jUnitVersion}",
+            junit: "junit:junit:${jUnitVersion}",
             mockK: "io.mockk:mockk:${mockKVersion}"
     ]
 
@@ -55,7 +64,7 @@ ext {
     ]
 
     dataTestDependencies = [
-            junit  : "junit:junit:${jUnitVersion}",
+            junit: "junit:junit:${jUnitVersion}",
             mockK: "io.mockk:mockk:${mockKVersion}"
     ]
 
@@ -72,7 +81,7 @@ ext {
     ]
 
     remoteTestDependencies = [
-            junit  : "junit:junit:${jUnitVersion}",
+            junit: "junit:junit:${jUnitVersion}",
             mockK: "io.mockk:mockk:${mockKVersion}"
     ]
 

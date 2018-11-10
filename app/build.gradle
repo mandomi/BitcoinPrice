@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion buildVersions.compileSdkVersion
@@ -29,6 +30,15 @@ dependencies {
     implementation appDependencies.kotlin
     implementation appDependencies.androidxAppcompat
     implementation appDependencies.androidxConstraintLayout
+    implementation appDependencies.rxKotlin
+    implementation appDependencies.rxAndroid
+
+    implementation appDependencies.dagger
+    kapt appDependencies.daggerCompiler
+    implementation appDependencies.daggerAndroid
+    implementation appDependencies.daggerAndroidSupport
+    kapt appDependencies.daggerAndroidProcessor
+
 
     testImplementation appTestDependencies.junit
     androidTestImplementation appTestDependencies.androidxTestRunner
