@@ -41,7 +41,19 @@ ext {
 
     domainTestDependencies = [
             junit  : "junit:junit:${jUnitVersion}",
-            mockK: "io.mockk:mockk:${mockKVersion}",
+            mockK: "io.mockk:mockk:${mockKVersion}"
+    ]
+
+    dataDependencies = [
+            javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxKotlin       : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
+    ]
+
+    dataTestDependencies = [
+            junit  : "junit:junit:${jUnitVersion}",
+            mockK: "io.mockk:mockk:${mockKVersion}"
     ]
 
 }
