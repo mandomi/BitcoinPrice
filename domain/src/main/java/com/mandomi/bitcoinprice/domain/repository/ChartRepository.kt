@@ -5,6 +5,6 @@ import io.reactivex.Single
 
 interface ChartRepository {
 
-    fun getChart(chartName: String, timeSpan: String, rollingAverage: String, start: String): Single<Chart>
+    fun getChart(chartName: String, timeSpan: String): Single<Chart>
 
 }

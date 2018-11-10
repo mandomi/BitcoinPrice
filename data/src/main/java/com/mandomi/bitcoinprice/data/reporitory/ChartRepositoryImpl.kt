@@ -10,8 +10,8 @@ import javax.inject.Inject
 class ChartRepositoryImpl @Inject constructor(private val chartRemoteDataSource: ChartRemoteDataSource) :
     ChartRepository {
 
-    override fun getChart(chartName: String, timeSpan: String, rollingAverage: String, start: String): Single<Chart> {
-        return chartRemoteDataSource.getChart(chartName, timeSpan, rollingAverage, start).map { it.toChart() }
+    override fun getChart(chartName: String, timeSpan: String): Single<Chart> {
+        return chartRemoteDataSource.getChart(chartName, timeSpan).map { it.toChart() }
     }
 
 }

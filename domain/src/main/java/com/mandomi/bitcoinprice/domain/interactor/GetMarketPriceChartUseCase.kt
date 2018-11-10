@@ -15,6 +15,6 @@ class GetMarketPriceChartUseCase @Inject constructor(
 ) : SingleUseCase<Chart, ChartUseCaseParams>(useCaseExecutor, postExecutionThread) {
 
     override fun buildSingle(params: ChartUseCaseParams): Single<Chart> {
-        return chartRepository.getChart("market-price", params.timeSpan, params.rollingAverage, params.start)
+        return chartRepository.getChart("market-price", params.timeSpan)
     }
 }

@@ -5,6 +5,6 @@ import io.reactivex.Single
 
 interface ChartRemoteDataSource {
 
-    fun getChart(chartName: String, timeSpan: String, rollingAverage: String, start: String): Single<ChartEntity>
+    fun getChart(chartName: String, timeSpan: String): Single<ChartEntity>
 
 }

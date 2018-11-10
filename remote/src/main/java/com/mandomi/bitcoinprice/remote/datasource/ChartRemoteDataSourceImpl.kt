@@ -18,13 +18,8 @@ class ChartRemoteDataSourceImpl @Inject constructor(okHttpClient: OkHttpClient) 
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient).build().create(ChartService::class.java)
 
-    override fun getChart(
-        chartName: String,
-        timeSpan: String,
-        rollingAverage: String,
-        start: String
-    ): Single<ChartEntity> {
-        return service.getChart(chartName, timeSpan, rollingAverage, start).toRxSingle().map { it.toChartEntity() }
+    override fun getChart(chartName: String, timeSpan: String): Single<ChartEntity> {
+        return service.getChart(chartName, timeSpan).toRxSingle().map { it.toChartEntity() }
     }
 
 }
