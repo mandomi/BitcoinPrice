@@ -112,15 +112,15 @@ private fun createHttpError(throwable: HttpException): Failure {
     return if (response.code() == 404) {
         Failure.NotFoundError("Not Found")
     } else {
-        Failure.ServerError("Server Error", throwable)
+        Failure.ServerError("Server Error")
     }
 }
 
 private fun asNetworkError(throwable: Throwable): Throwable {
     return when (throwable) {
-        is IOException -> Failure.NetworkConnectionError("No Network Connection", throwable)
+        is IOException -> Failure.NetworkConnectionError("No Network Connection")
         is HttpException -> createHttpError(throwable)
         is Failure -> throwable
-        else -> Failure.ServerError("Server Error", throwable)
+        else -> Failure.ServerError("Server Error")
     }
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BitcoinPrice</string>
+    <string name="data_not_found">Data Not Found</string>
+    <string name="try_again">Try Again</string>
 </resources>

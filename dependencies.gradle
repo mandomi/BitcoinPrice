@@ -20,6 +20,7 @@ ext {
     daggerVersion = "2.16"
     rxAndroidVersion = '2.1.0'
     mpAndroidChartVersion = "v3.1.0-alpha"
+    materialVersion = "1.1.0-alpha01"
 
     //Testing
     jUnitVersion = '4.12'
@@ -39,7 +40,8 @@ ext {
             daggerAndroidProcessor  : "com.google.dagger:dagger-android-processor:${daggerVersion}",
             rxKotlin                : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
             rxAndroid               : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
-            mpAndroidChart          : "com.github.PhilJay:MPAndroidChart:${mpAndroidChartVersion}"
+            mpAndroidChart          : "com.github.PhilJay:MPAndroidChart:${mpAndroidChartVersion}",
+            material                : "com.google.android.material:material:${materialVersion}"
     ]
 
     appTestDependencies = [

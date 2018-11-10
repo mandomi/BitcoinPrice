@@ -5,13 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.google.android.material.snackbar.Snackbar
 import com.mandomi.bitcoinprice.R
+import com.mandomi.bitcoinprice.domain.faliure.Failure
 import com.mandomi.bitcoinprice.extension.createViewModel
 import com.mandomi.bitcoinprice.extension.observe
 import com.mandomi.bitcoinprice.extension.toDayMonthYear
@@ -73,7 +76,7 @@ class ChartFragment : BaseFragment() {
             marker = CustomMarkerView(requireContext(), R.layout.custom_marker_view).apply { chartView = chart }
 
             with(xAxis) {
-                valueFormatter = IAxisValueFormatter { value, axis -> value.toLong().toDayMonthYear() }
+                valueFormatter = IAxisValueFormatter { value, _ -> value.toLong().toDayMonthYear() }
                 disableAxisLineDashedLine()
                 disableGridDashedLine()
                 setDrawAxisLine(false)
@@ -101,19 +104,31 @@ class ChartFragment : BaseFragment() {
     private fun handleLoading() {
         showLoading()
         hideChartViews()
-    }
-
-    private fun hideChartViews() {
-        chartGroup.visibility = View.GONE
+        hideErrorView()
+        hideEmptyView()
     }
 
     private fun showLoading() {
         loading.visibility = View.VISIBLE
     }
 
+    private fun hideChartViews() {
+        chartGroup.visibility = View.GONE
+    }
+
+    private fun hideErrorView() {
+        errorView.visibility = View.GONE
+    }
+
+    private fun hideEmptyView() {
+        emptyView.visibility = View.GONE
+    }
+
     private fun handleSuccess(data: ChartItem) {
         hideLoading()
         showChartViews()
+        hideErrorView()
+        hideEmptyView()
         showData(data)
     }
 
@@ -179,6 +194,33 @@ class ChartFragment : BaseFragment() {
     }
 
     private fun handleError(failure: Throwable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        hideLoading()
+        hideChartViews()
+        if (failure is Failure.NotFoundError) {
+            hideErrorView()
+            showEmptyView()
+        } else {
+            hideEmptyView()
+            showErrorView()
+            showSnackBar(failure.message)
+        }
+    }
+
+    private fun showEmptyView() {
+        emptyView.visibility = View.VISIBLE
+    }
+
+    private fun showErrorView() {
+        errorView.visibility = View.VISIBLE
+    }
+
+    private fun showSnackBar(message: String?) {
+        message?.let {
+            Snackbar.make(view!!, message, Snackbar.LENGTH_INDEFINITE).apply {
+                view.layoutParams = (view.layoutParams as FrameLayout.LayoutParams).apply {
+                    setAction(getString(R.string.try_again)) { viewModel.load() }
+                }
+            }.show()
+        }
     }
 }
