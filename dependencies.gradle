@@ -1,0 +1,31 @@
+ext {
+
+    buildVersions = [
+            compileSdkVersion: 28,
+            minSdkVersion    : 16,
+            targetSdkVersion : 28
+    ]
+
+    //Libraries
+    kotlinVersion = "$kotlin_version"
+    androidxVersion = '1.0.0'
+    androidxConstraintLayoutVersion = '2.0.0-alpha2'
+
+    //Testing
+    jUnitVersion = '4.12'
+    androidxEspressoVersion = '3.1.0'
+    androidxTestVersion = '1.1.0-alpha3'
+
+    appDependencies = [
+            kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            androidxAppcompat       : "androidx.appcompat:appcompat:${androidxVersion}",
+            androidxConstraintLayout: "androidx.constraintlayout:constraintlayout:${androidxConstraintLayoutVersion}",
+    ]
+
+    appTestDependencies = [
+            androidxTestRunner  : "androidx.test:runner:${androidxTestVersion}",
+            androidxTestEspresso: "androidx.test.espresso:espresso-core:${androidxEspressoVersion}",
+            junit               : "junit:junit:${jUnitVersion}"
+    ]
+
+}
