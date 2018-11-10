@@ -1,5 +1,6 @@
 package com.mandomi.bitcoinprice.remote.extension
 
+import com.mandomi.bitcoinprice.domain.faliure.Failure
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.Single
@@ -9,16 +10,10 @@ import io.reactivex.exceptions.Exceptions
 import io.reactivex.plugins.RxJavaPlugins
 import retrofit2.Call
 import retrofit2.HttpException
+import java.io.IOException
 
 fun <T> Call<T>.toRxObservable(): Observable<T> = BodyObservable(RetrofitCallObservable(this))
 fun <T> Call<T>.toRxSingle(): Single<T> = toRxObservable().singleOrError()
-
-fun <T> Call<T>.fetchBody(): T {
-    return execute().let {
-        if (!it.isSuccessful) throw HttpException(it)
-        it.body()!!
-    }
-}
 
 private class RetrofitCallObservable<T>(private val originalCall: Call<T>) : Observable<retrofit2.Response<T>>() {
 
@@ -43,7 +38,7 @@ private class RetrofitCallObservable<T>(private val originalCall: Call<T>) : Obs
                 RxJavaPlugins.onError(t)
             } else if (!call.isCanceled) {
                 try {
-                    observer.onError(t)
+                    observer.onError(asNetworkError(t))
                 } catch (inner: Throwable) {
                     Exceptions.throwIfFatal(inner)
                     RxJavaPlugins.onError(CompositeException(t, inner))
@@ -83,7 +78,7 @@ private class BodyObserver<R>(private val observer: Observer<in R>) : Observer<r
             terminated = true
             val t = retrofit2.HttpException(response)
             try {
-                observer.onError(t)
+                observer.onError(asNetworkError(t))
             } catch (inner: Throwable) {
                 Exceptions.throwIfFatal(inner)
                 RxJavaPlugins.onError(CompositeException(t, inner))
@@ -99,7 +94,7 @@ private class BodyObserver<R>(private val observer: Observer<in R>) : Observer<r
 
     override fun onError(throwable: Throwable) {
         if (!terminated) {
-            observer.onError(throwable)
+            observer.onError(asNetworkError(throwable))
         } else {
             // This should never happen! onNext handles and forwards errors automatically.
             val broken = AssertionError(
@@ -109,5 +104,23 @@ private class BodyObserver<R>(private val observer: Observer<in R>) : Observer<r
             broken.initCause(throwable)
             RxJavaPlugins.onError(broken)
         }
+    }
+}
+
+private fun createHttpError(throwable: HttpException): Failure {
+    val response = throwable.response()
+    return if (response.code() == 404) {
+        Failure.NotFoundError("Not Found")
+    } else {
+        Failure.ServerError("Server Error", throwable)
+    }
+}
+
+private fun asNetworkError(throwable: Throwable): Throwable {
+    return when (throwable) {
+        is IOException -> Failure.NetworkConnectionError("No Network Connection", throwable)
+        is HttpException -> createHttpError(throwable)
+        is Failure -> throwable
+        else -> Failure.ServerError("Server Error", throwable)
     }
 }
