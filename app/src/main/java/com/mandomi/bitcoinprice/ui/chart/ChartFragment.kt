@@ -12,10 +12,13 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.mandomi.bitcoinprice.R
-import com.mandomi.bitcoinprice.extension.*
+import com.mandomi.bitcoinprice.extension.createViewModel
+import com.mandomi.bitcoinprice.extension.observe
+import com.mandomi.bitcoinprice.extension.toDayMonthYear
 import com.mandomi.bitcoinprice.ui.base.BaseFragment
 import com.mandomi.bitcoinprice.ui.model.Resource
 import com.mandomi.bitcoinprice.ui.model.ResourceState
+import com.mandomi.bitcoinprice.ui.widget.CustomMarkerView
 import kotlinx.android.synthetic.main.fragment_chart.*
 import java.util.*
 
@@ -67,6 +70,7 @@ class ChartFragment : BaseFragment() {
             legend.isEnabled = false
             description.isEnabled = false
             animateX(1500)
+            marker = CustomMarkerView(requireContext(), R.layout.custom_marker_view).apply { chartView = chart }
 
             with(xAxis) {
                 valueFormatter = IAxisValueFormatter { value, axis -> value.toLong().toDayMonthYear() }
@@ -80,6 +84,7 @@ class ChartFragment : BaseFragment() {
                 textSize = 12f
                 granularity = 1f
                 labelCount = 1
+                animateX(1500)
             }
 
             with(axisLeft) {
