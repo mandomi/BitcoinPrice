@@ -19,6 +19,7 @@ ext {
     gsonVersion = '2.8.5'
     daggerVersion = "2.16"
     rxAndroidVersion = '2.1.0'
+    mpAndroidChartVersion = "v3.1.0-alpha"
 
     //Testing
     jUnitVersion = '4.12'
@@ -37,7 +38,8 @@ ext {
             daggerAndroidSupport    : "com.google.dagger:dagger-android-support:${daggerVersion}",
             daggerAndroidProcessor  : "com.google.dagger:dagger-android-processor:${daggerVersion}",
             rxKotlin                : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
-            rxAndroid               : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
+            rxAndroid               : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            mpAndroidChart          : "com.github.PhilJay:MPAndroidChart:${mpAndroidChartVersion}"
     ]
 
     appTestDependencies = [

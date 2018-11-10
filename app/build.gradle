@@ -45,6 +45,8 @@ dependencies {
     implementation appDependencies.daggerAndroidSupport
     kapt appDependencies.daggerAndroidProcessor
 
+    implementation appDependencies.mpAndroidChart
+
     testImplementation appTestDependencies.junit
     androidTestImplementation appTestDependencies.androidxTestRunner
     androidTestImplementation appTestDependencies.androidxTestEspresso
