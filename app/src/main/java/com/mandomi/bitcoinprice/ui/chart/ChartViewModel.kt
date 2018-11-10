@@ -18,9 +18,9 @@ class ChartViewModel @Inject constructor(private val marketPriceChartUseCase: Ge
 
     fun getData(): LiveData<Resource<ChartItem>> = data
 
-    fun load() {
+    fun load(duration: String) {
         data.value = Resource(ResourceState.LOADING)
-        useCases += marketPriceChartUseCase.execute(ChartUseCaseParams(), ::success, ::error)
+        useCases += marketPriceChartUseCase.execute(ChartUseCaseParams(timeSpan = duration), ::success, ::error)
     }
 
     private fun success(chart: Chart) {

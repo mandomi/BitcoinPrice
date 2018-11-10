@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.FrameLayout
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
@@ -25,14 +27,13 @@ import com.mandomi.bitcoinprice.ui.widget.CustomMarkerView
 import kotlinx.android.synthetic.main.fragment_chart.*
 import java.util.*
 
-class ChartFragment : BaseFragment() {
-
+class ChartFragment : BaseFragment(), AdapterView.OnItemSelectedListener {
     companion object {
-
         fun getInstance() = ChartFragment()
     }
 
     private lateinit var viewModel: ChartViewModel
+    private var lastDuration: ChartDataDuration = ChartDataDuration.ONE_WEEK
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_chart, container, false)
@@ -43,12 +44,13 @@ class ChartFragment : BaseFragment() {
         viewModel = createViewModel(viewModelFactory) {
             observe(getData(), ::handleStates)
         }
-        viewModel.load()
+        viewModel.load(lastDuration.value)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupChart()
+        createDurationSpinner()
     }
 
     private fun handleStates(resource: Resource<ChartItem>?) {
@@ -101,6 +103,18 @@ class ChartFragment : BaseFragment() {
         }
     }
 
+    private fun createDurationSpinner() {
+        ArrayAdapter.createFromResource(
+            requireContext(), R.array.duration_array, android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            with(durationSpinner) {
+                this.adapter = adapter
+                onItemSelectedListener = this@ChartFragment
+            }
+        }
+    }
+
     private fun handleLoading() {
         showLoading()
         hideChartViews()
@@ -150,7 +164,11 @@ class ChartFragment : BaseFragment() {
             values.add(Entry(point.timeSpan.toFloat(), point.value.toFloat()))
         }
 
+        data.minValue?.let { chart.axisLeft.axisMinimum = it - 50 }
+        data.maxValue?.let { chart.axisLeft.axisMaximum = it + 50 }
+
         val lineDataSet: LineDataSet
+
         if (chart.data != null && chart.data.dataSetCount > 0) run {
             lineDataSet = chart.data.getDataSetByIndex(0) as LineDataSet
 
@@ -185,9 +203,6 @@ class ChartFragment : BaseFragment() {
             val dataSet = ArrayList<ILineDataSet>()
             dataSet.add(lineDataSet)
 
-            data.minValue?.let { chart.axisLeft.axisMinimum = it - 50 }
-            data.maxValue?.let { chart.axisLeft.axisMaximum = it + 50 }
-
             val lineData = LineData(dataSet)
             chart.data = lineData
         }
@@ -218,9 +233,22 @@ class ChartFragment : BaseFragment() {
         message?.let {
             Snackbar.make(view!!, message, Snackbar.LENGTH_INDEFINITE).apply {
                 view.layoutParams = (view.layoutParams as FrameLayout.LayoutParams).apply {
-                    setAction(getString(R.string.try_again)) { viewModel.load() }
+                    setAction(getString(R.string.try_again)) { viewModel.load(lastDuration.value) }
                 }
             }.show()
         }
     }
+
+    override fun onNothingSelected(parent: AdapterView<*>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
+        val selectedDuration = ChartDataDuration.values()[pos]
+        if (selectedDuration != lastDuration) {
+            lastDuration = selectedDuration
+            viewModel.load(lastDuration.value)
+        }
+    }
+
 }

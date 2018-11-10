@@ -2,4 +2,14 @@
     <string name="app_name">BitcoinPrice</string>
     <string name="data_not_found">Data Not Found</string>
     <string name="try_again">Try Again</string>
+    <string name="duration_of_the_data">Duration of the data: </string>
+    <string-array name="duration_array">
+        <item>7 days</item>
+        <item>30 Days</item>
+        <item>60 Days</item>
+        <item>180 Days</item>
+        <item>1 Year</item>
+        <item>2 Year</item>
+        <item>All Time</item>
+    </string-array>
 </resources>
