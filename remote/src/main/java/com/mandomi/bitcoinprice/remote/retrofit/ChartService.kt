@@ -7,10 +7,10 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ChartService {
-    @GET("/charts/{chartName}")
+    @GET("/charts/{chartName}/")
     fun getChart(
         @Path("chartName") name: String,
-        @Query("timeSpan") timeSpan: String,
+        @Query("timespan") timeSpan: String,
         @Query("rollingAverage") rollingAverage: String,
         @Query("start") start: String
     ): Call<ChartDTO>

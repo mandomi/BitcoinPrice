@@ -8,4 +8,4 @@ data class ChartItem(
     val points: List<PointItem>
 )
 
-data class PointItem(val x: String, val y: Double)
+data class PointItem(val timeSpan: Long, val value: Double, val stringTime: String)
