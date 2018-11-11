@@ -33,14 +33,14 @@ class MarketPriceUseCaseTest {
     }
 
     @Test
-    fun `check getChart method of repository was called`() {
+    fun `getChart method of repository was called`() {
         mockGetChartResponse()
         usecase.execute(params, {}, {})
         verify(exactly = 1) { repository.getChart(any(), any()) }
     }
 
     @Test
-    fun `check correct arguments were passed to the getChart method of repository`() {
+    fun `correct arguments were passed to the getChart method of repository`() {
 
         mockGetChartResponse()
         usecase.execute(params, {}, {})
@@ -48,13 +48,13 @@ class MarketPriceUseCaseTest {
     }
 
     @Test
-    fun `check repository completes`() {
+    fun `repository completes`() {
         mockGetChartResponse()
         usecase.buildSingle(params).test().assertComplete()
     }
 
     @Test
-    fun `check repository returns data`() {
+    fun `repository returns data`() {
         val chart = makeChart(10)
         mockGetChartResponse(chart)
         usecase.buildSingle(params).test().assertValue(chart)
