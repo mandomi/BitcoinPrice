@@ -27,6 +27,7 @@ ext {
     androidxEspressoVersion = '3.1.0'
     androidxTestVersion = '1.1.0-alpha3'
     mockKVersion = '1.8.12'
+    archTestingVersion = '1.1.1'
 
     appDependencies = [
             kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
@@ -47,7 +48,9 @@ ext {
     appTestDependencies = [
             androidxTestRunner  : "androidx.test:runner:${androidxTestVersion}",
             androidxTestEspresso: "androidx.test.espresso:espresso-core:${androidxEspressoVersion}",
-            junit               : "junit:junit:${jUnitVersion}"
+            junit               : "junit:junit:${jUnitVersion}",
+            mockK               : "io.mockk:mockk:${mockKVersion}",
+            archTesting         : "android.arch.core:core-testing:${archTestingVersion}"
     ]
 
     domainDependencies = [

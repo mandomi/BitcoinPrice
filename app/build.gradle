@@ -50,6 +50,8 @@ dependencies {
     implementation appDependencies.mpAndroidChart
 
     testImplementation appTestDependencies.junit
+    testImplementation appTestDependencies.mockK
+    testImplementation appTestDependencies.archTesting
     androidTestImplementation appTestDependencies.androidxTestRunner
     androidTestImplementation appTestDependencies.androidxTestEspresso
 }
