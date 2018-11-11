@@ -88,7 +88,6 @@ class ChartFragment : BaseFragment(), AdapterView.OnItemSelectedListener {
                 removeAllLimitLines()
                 textSize = 10f
                 granularity = 1f
-                labelCount = 1
                 animateX(1500)
             }
 
