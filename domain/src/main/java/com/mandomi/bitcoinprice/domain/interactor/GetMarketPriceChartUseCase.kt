@@ -12,9 +12,12 @@ class GetMarketPriceChartUseCase @Inject constructor(
     private val chartRepository: ChartRepository,
     useCaseExecutor: UseCaseExecutor,
     postExecutionThread: PostExecutionThread
-) : SingleUseCase<Chart, ChartUseCaseParams>(useCaseExecutor, postExecutionThread) {
+) : SingleUseCase<Chart, GetMarketPriceChartUseCase.Params>(useCaseExecutor, postExecutionThread) {
 
-    override fun buildSingle(params: ChartUseCaseParams): Single<Chart> {
+    override fun buildSingle(params: Params): Single<Chart> {
         return chartRepository.getChart("market-price", params.timeSpan)
     }
+
+    data class Params(val timeSpan: String = "4weeks")
+
 }

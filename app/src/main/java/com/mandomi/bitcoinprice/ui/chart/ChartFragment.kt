@@ -95,8 +95,6 @@ class ChartFragment : BaseFragment(), AdapterView.OnItemSelectedListener {
             with(axisLeft) {
                 disableGridDashedLine()
                 disableAxisLineDashedLine()
-                yOffset = -9f
-
             }
 
             axisRight.isEnabled = false

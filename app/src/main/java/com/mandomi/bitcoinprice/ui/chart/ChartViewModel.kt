@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mandomi.bitcoinprice.boundary.toChartItem
 import com.mandomi.bitcoinprice.domain.entity.Chart
-import com.mandomi.bitcoinprice.domain.interactor.ChartUseCaseParams
 import com.mandomi.bitcoinprice.domain.interactor.GetMarketPriceChartUseCase
+import com.mandomi.bitcoinprice.domain.interactor.GetMarketPriceChartUseCase.Params
 import com.mandomi.bitcoinprice.ui.base.BaseViewModel
 import com.mandomi.bitcoinprice.ui.model.Resource
 import com.mandomi.bitcoinprice.ui.model.ResourceState
@@ -20,7 +20,7 @@ class ChartViewModel @Inject constructor(private val marketPriceChartUseCase: Ge
 
     fun load(duration: String) {
         data.value = Resource(ResourceState.LOADING)
-        useCases += marketPriceChartUseCase.execute(ChartUseCaseParams(timeSpan = duration), ::success, ::error)
+        useCases += marketPriceChartUseCase.execute(Params(timeSpan = duration), ::success, ::error)
     }
 
     private fun success(chart: Chart) {
