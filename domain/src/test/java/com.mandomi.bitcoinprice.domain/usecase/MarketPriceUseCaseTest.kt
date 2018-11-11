@@ -1,12 +1,13 @@
 package com.mandomi.bitcoinprice.domain.usecase
 
+import com.mandomi.bitcoinprice.domain.entity.Chart
 import com.mandomi.bitcoinprice.domain.executer.PostExecutionThread
 import com.mandomi.bitcoinprice.domain.executer.UseCaseExecutor
-import com.mandomi.bitcoinprice.domain.factory.ChartFactory.CHART_NAME
-import com.mandomi.bitcoinprice.domain.factory.ChartFactory.TIME_SPAN
-import com.mandomi.bitcoinprice.domain.factory.ChartFactory.chart
 import com.mandomi.bitcoinprice.domain.interactor.GetMarketPriceChartUseCase
 import com.mandomi.bitcoinprice.domain.repository.ChartRepository
+import com.mandomi.bitcoinprice.factory.ChartFactory.Factory.CHART_NAME
+import com.mandomi.bitcoinprice.factory.ChartFactory.Factory.TIME_SPAN
+import com.mandomi.bitcoinprice.factory.ChartFactory.Factory.makeChart
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
@@ -54,11 +55,12 @@ class MarketPriceUseCaseTest {
 
     @Test
     fun `check repository returns data`() {
-        mockGetChartResponse()
+        val chart = makeChart(10)
+        mockGetChartResponse(chart)
         usecase.buildSingle(params).test().assertValue(chart)
     }
 
-    private fun mockGetChartResponse() {
+    private fun mockGetChartResponse(chart: Chart = makeChart(10)) {
         every { repository.getChart(any(), any()) } returns Single.just(chart)
     }
 }
