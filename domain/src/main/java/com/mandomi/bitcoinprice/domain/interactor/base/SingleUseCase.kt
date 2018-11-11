@@ -11,7 +11,7 @@ abstract class SingleUseCase<Result, in Params> constructor(
     private val postExecutionThread: PostExecutionThread
 ) : UseCase() {
 
-    protected abstract fun buildSingle(params: Params): Single<Result>
+    abstract fun buildSingle(params: Params): Single<Result>
 
     @CheckReturnValue
     fun execute(
