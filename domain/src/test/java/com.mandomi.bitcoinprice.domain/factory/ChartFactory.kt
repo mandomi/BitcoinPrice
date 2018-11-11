@@ -5,6 +5,9 @@ import com.mandomi.bitcoinprice.domain.entity.Point
 
 object ChartFactory {
 
+    const val CHART_NAME = "market-price"
+    const val TIME_SPAN = "1week"
+
     private val points = listOf(
         Point(1, 1.0),
         Point(2, 2.0),

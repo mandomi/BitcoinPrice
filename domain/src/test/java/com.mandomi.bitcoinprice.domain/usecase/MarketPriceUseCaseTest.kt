@@ -2,6 +2,8 @@ package com.mandomi.bitcoinprice.domain.usecase
 
 import com.mandomi.bitcoinprice.domain.executer.PostExecutionThread
 import com.mandomi.bitcoinprice.domain.executer.UseCaseExecutor
+import com.mandomi.bitcoinprice.domain.factory.ChartFactory.CHART_NAME
+import com.mandomi.bitcoinprice.domain.factory.ChartFactory.TIME_SPAN
 import com.mandomi.bitcoinprice.domain.factory.ChartFactory.chart
 import com.mandomi.bitcoinprice.domain.interactor.GetMarketPriceChartUseCase
 import com.mandomi.bitcoinprice.domain.repository.ChartRepository
@@ -22,7 +24,7 @@ class MarketPriceUseCaseTest {
     private val usecase: GetMarketPriceChartUseCase =
         GetMarketPriceChartUseCase(repository, useCaseExecutor, postExecutionThread)
 
-    private val params = GetMarketPriceChartUseCase.Params("1week")
+    private val params = GetMarketPriceChartUseCase.Params(TIME_SPAN)
 
     @Before
     fun setup() {
@@ -46,6 +48,6 @@ class MarketPriceUseCaseTest {
 
         usecase.execute(params, {}, {})
 
-        verify { repository.getChart("market-price", "1week") }
+        verify { repository.getChart(CHART_NAME, TIME_SPAN) }
     }
 }
