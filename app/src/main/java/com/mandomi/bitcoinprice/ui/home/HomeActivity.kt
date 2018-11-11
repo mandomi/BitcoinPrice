@@ -12,6 +12,11 @@ class HomeActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.inTransaction { replace(R.id.contentFrame, ChartFragment.getInstance()) }
+        savedInstanceState ?: supportFragmentManager.inTransaction {
+            replace(
+                R.id.contentFrame,
+                ChartFragment.getInstance()
+            )
+        }
     }
 }

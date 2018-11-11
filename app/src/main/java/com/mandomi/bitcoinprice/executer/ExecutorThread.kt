@@ -5,6 +5,5 @@ import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 
 class ExecutorThread : UseCaseExecutor {
-    override val scheduler: Scheduler
-        get() = Schedulers.io()
+    override val scheduler: Scheduler by lazy { Schedulers.io() }
 }
