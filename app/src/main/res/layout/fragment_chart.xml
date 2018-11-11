@@ -33,10 +33,11 @@
         android:id="@+id/dataDuration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_margin_triple"
+        android:layout_marginTop="@dimen/default_margin_quadruple"
         android:text="@string/duration_of_the_data"
         android:textSize="@dimen/medium_text_size"
         android:textStyle="bold"
+        android:layout_marginStart="@dimen/default_margin_triple"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chartDescription" />
 
@@ -44,13 +45,13 @@
         android:id="@+id/durationSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginStart="@dimen/default_margin"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="@id/dataDuration"
         app:layout_constraintStart_toEndOf="@id/dataDuration"
         app:layout_constraintTop_toBottomOf="@id/chartDescription"
         app:layout_constraintTop_toTopOf="@id/dataDuration"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart"

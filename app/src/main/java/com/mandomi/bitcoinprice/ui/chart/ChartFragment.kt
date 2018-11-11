@@ -19,7 +19,7 @@ import com.mandomi.bitcoinprice.R
 import com.mandomi.bitcoinprice.domain.faliure.Failure
 import com.mandomi.bitcoinprice.extension.createViewModel
 import com.mandomi.bitcoinprice.extension.observe
-import com.mandomi.bitcoinprice.extension.toDayMonthYear
+import com.mandomi.bitcoinprice.extension.toDayMonth
 import com.mandomi.bitcoinprice.ui.base.BaseFragment
 import com.mandomi.bitcoinprice.ui.model.Resource
 import com.mandomi.bitcoinprice.ui.model.ResourceState
@@ -78,7 +78,7 @@ class ChartFragment : BaseFragment(), AdapterView.OnItemSelectedListener {
             marker = CustomMarkerView(requireContext(), R.layout.custom_marker_view).apply { chartView = chart }
 
             with(xAxis) {
-                valueFormatter = IAxisValueFormatter { value, _ -> value.toLong().toDayMonthYear() }
+                valueFormatter = IAxisValueFormatter { value, _ -> value.toLong().toDayMonth() }
                 disableAxisLineDashedLine()
                 disableGridDashedLine()
                 setDrawAxisLine(false)
@@ -86,7 +86,7 @@ class ChartFragment : BaseFragment(), AdapterView.OnItemSelectedListener {
                 setCenterAxisLabels(true)
                 position = XAxis.XAxisPosition.BOTTOM
                 removeAllLimitLines()
-                textSize = 12f
+                textSize = 10f
                 granularity = 1f
                 labelCount = 1
                 animateX(1500)
