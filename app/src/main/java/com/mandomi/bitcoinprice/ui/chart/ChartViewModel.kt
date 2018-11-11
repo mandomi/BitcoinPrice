@@ -16,11 +16,15 @@ class ChartViewModel @Inject constructor(private val marketPriceChartUseCase: Ge
 
     private val data: MutableLiveData<Resource<ChartItem>> = MutableLiveData()
 
+    init {
+        useCases += marketPriceChartUseCase
+    }
+
     fun getData(): LiveData<Resource<ChartItem>> = data
 
     fun load(duration: String) {
         data.value = Resource(ResourceState.LOADING)
-        useCases += marketPriceChartUseCase.execute(Params(timeSpan = duration), ::success, ::error)
+        marketPriceChartUseCase.execute(Params(timeSpan = duration), ::success, ::error)
     }
 
     private fun success(chart: Chart) {
