@@ -5,9 +5,9 @@ import com.mandomi.bitcoinprice.domain.executer.PostExecutionThread
 import com.mandomi.bitcoinprice.domain.executer.UseCaseExecutor
 import com.mandomi.bitcoinprice.domain.interactor.GetMarketPriceChartUseCase
 import com.mandomi.bitcoinprice.domain.repository.ChartRepository
-import com.mandomi.bitcoinprice.factory.ChartFactory.Factory.CHART_NAME
-import com.mandomi.bitcoinprice.factory.ChartFactory.Factory.TIME_SPAN
-import com.mandomi.bitcoinprice.factory.ChartFactory.Factory.makeChart
+import com.mandomi.bitcoinprice.domain.factory.ChartFactory.Factory.CHART_NAME
+import com.mandomi.bitcoinprice.domain.factory.ChartFactory.Factory.TIME_SPAN
+import com.mandomi.bitcoinprice.domain.factory.ChartFactory.Factory.makeChart
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk

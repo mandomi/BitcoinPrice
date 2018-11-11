@@ -1,8 +1,8 @@
-package com.mandomi.bitcoinprice.factory
+package com.mandomi.bitcoinprice.domain.factory
 
 import java.util.concurrent.ThreadLocalRandom
 
-class DataFactory {
+internal class DataFactory {
 
     companion object Factory {
 

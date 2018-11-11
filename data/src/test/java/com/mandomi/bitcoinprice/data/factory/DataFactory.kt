@@ -1,12 +1,12 @@
-package com.mandomi.bitcoinprice.factory
+package com.mandomi.bitcoinprice.data.factory
 
 import java.util.concurrent.ThreadLocalRandom
 
-class DataFactory {
+internal class DataFactory {
 
     companion object Factory {
 
-        fun randomInt(): Int {
+        private fun randomInt(): Int {
             return ThreadLocalRandom.current().nextInt(0, 1000 + 1)
         }
 

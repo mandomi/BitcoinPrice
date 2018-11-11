@@ -7,6 +7,6 @@ import com.mandomi.bitcoinprice.remote.dto.PointDTO
 
 fun ChartDTO.toChartEntity() = ChartEntity(name, unit, period, description, points.map { it.toPoint() })
 
-private fun PointDTO.toPoint(): Point {
+fun PointDTO.toPoint(): Point {
     return Point(timeSpan, value)
 }

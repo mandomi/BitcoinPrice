@@ -1,16 +1,16 @@
 package com.mandomi.bitcoinprice.data.mapper
 
 import com.mandomi.bitcoinprice.data.entity.ChartEntity
+import com.mandomi.bitcoinprice.data.factory.ChartFactory
 import com.mandomi.bitcoinprice.data.toChart
 import com.mandomi.bitcoinprice.domain.entity.Chart
-import com.mandomi.bitcoinprice.factory.ChartFactory
 import org.junit.Assert
 import org.junit.Test
 
 class MappersTest {
 
     @Test
-    fun `ChartsEntry map to Chart`() {
+    fun `ChartEntry map to Chart`() {
         val chartEntry: ChartEntity = ChartFactory.makeChartEntity(10)
         val chart: Chart = chartEntry.toChart()
 

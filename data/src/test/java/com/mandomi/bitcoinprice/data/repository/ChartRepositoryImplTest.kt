@@ -1,13 +1,13 @@
 package com.mandomi.bitcoinprice.data.repository
 
 import com.mandomi.bitcoinprice.data.datasource.ChartRemoteDataSource
+import com.mandomi.bitcoinprice.data.factory.ChartFactory
+import com.mandomi.bitcoinprice.data.factory.ChartFactory.Factory.CHART_NAME
+import com.mandomi.bitcoinprice.data.factory.ChartFactory.Factory.TIME_SPAN
+import com.mandomi.bitcoinprice.data.factory.ChartFactory.Factory.WRONG_CHART_NAME
 import com.mandomi.bitcoinprice.data.reporitory.ChartRepositoryImpl
 import com.mandomi.bitcoinprice.data.toChart
 import com.mandomi.bitcoinprice.domain.faliure.Failure
-import com.mandomi.bitcoinprice.factory.ChartFactory
-import com.mandomi.bitcoinprice.factory.ChartFactory.Factory.CHART_NAME
-import com.mandomi.bitcoinprice.factory.ChartFactory.Factory.TIME_SPAN
-import com.mandomi.bitcoinprice.factory.ChartFactory.Factory.WRONG_CHART_NAME
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk

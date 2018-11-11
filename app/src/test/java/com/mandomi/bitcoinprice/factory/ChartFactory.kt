@@ -7,7 +7,7 @@ import com.mandomi.bitcoinprice.factory.DataFactory.Factory.randomLong
 import com.mandomi.bitcoinprice.ui.chart.ChartItem
 import com.mandomi.bitcoinprice.ui.chart.PointItem
 
-class ChartFactory {
+internal class ChartFactory {
 
     companion object Factory {
 

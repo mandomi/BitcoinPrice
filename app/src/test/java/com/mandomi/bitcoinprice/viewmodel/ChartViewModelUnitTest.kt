@@ -5,7 +5,7 @@ import com.mandomi.bitcoinprice.boundary.toChartItem
 import com.mandomi.bitcoinprice.domain.entity.Chart
 import com.mandomi.bitcoinprice.domain.faliure.Failure
 import com.mandomi.bitcoinprice.domain.interactor.GetMarketPriceChartUseCase
-import com.mandomi.bitcoinprice.factory.ChartFactory
+import com.mandomi.bitcoinprice.data.factory.ChartFactory
 import com.mandomi.bitcoinprice.ui.chart.ChartViewModel
 import com.mandomi.bitcoinprice.ui.model.ResourceState
 import io.mockk.*
